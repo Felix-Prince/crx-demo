@@ -18,5 +18,5 @@
 			"run_at": "document_start"
 		}
 	],
-	"web_accessible_resources": ["content-scripts/inject.js"]
+	"web_accessible_resources": ["content-scripts/inject-script.js"]
 }
