@@ -12,3 +12,17 @@
 // 	console.log(request, sender, sendResponse);
 // 	sendResponse("我是后台，我已收到你的消息：" + JSON.stringify(request));
 // });
+function sendMessageToContentScript(message, callback) {
+    chrome.tabs.query({ active: true }, function (tabs) {
+        console.log("---tab---", tabs);
+        chrome.tabs.sendMessage(tabs[0].id, message, function (response) {
+            if (callback) callback(response);
+        });
+    });
+}
+sendMessageToContentScript(
+    { cmd: "test", value: "你好，我是background！" },
+    function (response) {
+        console.log("来自content的回复：" + response);
+    }
+);
